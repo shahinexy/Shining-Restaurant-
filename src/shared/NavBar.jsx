@@ -18,10 +18,11 @@ const NavBar = () => {
         <NavLink>About</NavLink>
   </>
   return (
-    <div>
+    <div className="fixed top-0 z-20 w-full ">
       <Navbar
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
+        className="bg-black/50  text-white"
       >
         <NavbarContent className="sm:hidden" justify="start">
           <NavbarMenuToggle />
