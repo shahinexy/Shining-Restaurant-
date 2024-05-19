@@ -3,6 +3,7 @@ import OnlineOrderSection from "./OnlineOrderSection";
 import FixedBenner from "../../components/FixedBenner";
 import benner from '../../assets/home/chef-service.jpg'
 import OurMenueSection from "./OurMenueSection";
+import ReviewSection from "./ReviewSection";
 const Home = () => {
   return (
     <div>
@@ -21,6 +22,9 @@ const Home = () => {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:my-28 my-12">
         <OurMenueSection></OurMenueSection>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:my-28 my-12">
+        <ReviewSection></ReviewSection>
       </div>
     </div>
   );
