@@ -14,8 +14,9 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = <>
-        <NavLink> Home</NavLink>
+        <NavLink to={'/'}> Home</NavLink>
         <NavLink to={'/ourMenu'}>Our Menu</NavLink>
+        <NavLink to={'/ourShop'}>Our Shop</NavLink>
   </>
   return (
     <div className="fixed top-0 z-20 w-full ">

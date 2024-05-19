@@ -5,6 +5,8 @@ import SectionTitle from "../../components/SectionTitle";
 import SectionMenu from "../../components/SectionMenu";
 import dessertBenner from "../../assets/menu/dessert-bg.jpeg";
 import pizzaBenner from "../../assets/menu/pizza-bg.jpg";
+import saladBenner from "../../assets/menu/salad-bg.jpg";
+import soupBenner from "../../assets/menu/soup-bg.jpg";
 
 const OurMenu = () => {
   const { menuItems } = useMenu();
@@ -65,6 +67,40 @@ const OurMenu = () => {
 
         <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
           {pizza.map((data) => (
+            <SectionMenu key={data._id} data={data} img></SectionMenu>
+          ))}
+        </div>
+
+
+        <div className="my-24">
+          <FixedBenner
+            title={"salad"}
+            des={
+              "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            }
+            img={saladBenner}
+          ></FixedBenner>
+        </div>
+
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
+          {salad.map((data) => (
+            <SectionMenu key={data._id} data={data} img></SectionMenu>
+          ))}
+        </div>
+
+
+        <div className="my-24">
+          <FixedBenner
+            title={"soups"}
+            des={
+              "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            }
+            img={soupBenner}
+          ></FixedBenner>
+        </div>
+
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
+          {soup.map((data) => (
             <SectionMenu key={data._id} data={data} img></SectionMenu>
           ))}
         </div>
