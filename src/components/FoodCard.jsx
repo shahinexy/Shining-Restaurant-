@@ -11,7 +11,7 @@ const FoodCard = ({data}) => {
       <p>
         {recipe}
       </p>
-      <Button color="danger" variant="bordered" >
+      <Button color="warning" variant="bordered" >
         ADD TO CART
       </Button>
     </div>

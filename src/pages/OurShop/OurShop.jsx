@@ -25,7 +25,7 @@ const OurShop = () => {
       {/* ==== Tabs ==== */}
       <div className="max-w-7xl mx-auto px-4 my-24">
         <div className="flex w-full flex-col">
-          <Tabs key={'underlined'} variant="underlined" aria-label="Options">
+          <Tabs key={'underlined'} variant="underlined" color="warning" aria-label="Options">
             <Tab key="salad" title="Salad">
                 <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
                     {
