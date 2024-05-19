@@ -15,7 +15,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = <>
         <NavLink> Home</NavLink>
-        <NavLink>About</NavLink>
+        <NavLink to={'/ourMenu'}>Our Menu</NavLink>
   </>
   return (
     <div className="fixed top-0 z-20 w-full ">
@@ -34,7 +34,7 @@ const NavBar = () => {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="hidden sm:flex gap-4" justify="end">
           <NavbarBrand>
             <p className="font-bold text-inherit">ACME</p>
           </NavbarBrand>
