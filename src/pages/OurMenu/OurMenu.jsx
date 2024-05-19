@@ -7,6 +7,8 @@ import dessertBenner from "../../assets/menu/dessert-bg.jpeg";
 import pizzaBenner from "../../assets/menu/pizza-bg.jpg";
 import saladBenner from "../../assets/menu/salad-bg.jpg";
 import soupBenner from "../../assets/menu/soup-bg.jpg";
+import { Link } from "react-router-dom";
+import { Button } from "@nextui-org/react";
 
 const OurMenu = () => {
   const { menuItems } = useMenu();
@@ -37,6 +39,13 @@ const OurMenu = () => {
             <SectionMenu key={data._id} data={data}></SectionMenu>
           ))}
         </div>
+        <div className="flex justify-center mt-20">
+        <Link to={'/ourShop'}>
+          <Button color="warning" variant="bordered" className="uppercase">
+            VIew Full Menu
+          </Button>
+        </Link>
+      </div>
 
         <div className="my-24">
           <FixedBenner
@@ -54,6 +63,13 @@ const OurMenu = () => {
           ))}
         </div>
 
+        <div className="flex justify-center mt-20">
+        <Link to={'/ourShop/dessert'}>
+          <Button color="warning" variant="bordered" className="uppercase">
+            VIew Full Menu
+          </Button>
+        </Link>
+      </div>
 
         <div className="my-24">
           <FixedBenner
@@ -71,6 +87,13 @@ const OurMenu = () => {
           ))}
         </div>
 
+        <div className="flex justify-center mt-20">
+        <Link to={'/ourShop/pizza'}>
+          <Button color="warning" variant="bordered" className="uppercase">
+            VIew Full Menu
+          </Button>
+        </Link>
+      </div>
 
         <div className="my-24">
           <FixedBenner
@@ -88,6 +111,14 @@ const OurMenu = () => {
           ))}
         </div>
 
+        <div className="flex justify-center mt-20">
+        <Link to={'/ourShop/salad'}>
+          <Button color="warning" variant="bordered" className="uppercase">
+            VIew Full Menu
+          </Button>
+        </Link>
+      </div>
+
 
         <div className="my-24">
           <FixedBenner
@@ -104,6 +135,13 @@ const OurMenu = () => {
             <SectionMenu key={data._id} data={data} img></SectionMenu>
           ))}
         </div>
+        <div className="flex justify-center mt-20">
+        <Link to={'/ourShop/soup'}>
+          <Button color="warning" variant="bordered" className="uppercase">
+            VIew Full Menu
+          </Button>
+        </Link>
+      </div>
       </div>
     </div>
   );
