@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { authContext } from '../../AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
+    const {name} = useContext(authContext)
     const captchaRef = useRef(null)
     const [disable, setDisable] = useState(true)
 
@@ -44,6 +47,7 @@ const Login = () => {
                     <button onClick={handleCaptcha} className="mt-3 rounded-none bg-slate-500 py-2">Validate</button>
                     </div>
                     <button disabled={disable} className="mt-10 w-full rounded-none bg-slate-500 py-2">Login</button>
+                <p className='underline text-orange-500 font-bold mt-2'><Link to={'/register'}>Register</Link></p>
                 </form>
             </div>
         </div>
