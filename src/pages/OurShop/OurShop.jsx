@@ -8,7 +8,7 @@ import "react-tabs/style/react-tabs.css";
 import { useState } from "react";
 
 const OurShop = () => {
-  const categories = ["salad", "pizza", "suops", "dessert", "drinks"];
+  const categories = ["salad", "pizza", "suop", "dessert", "drinks"];
   const { category } = useParams();
   const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
@@ -40,7 +40,7 @@ const OurShop = () => {
             <TabList>
               <Tab>Salad</Tab>
               <Tab>Pizza</Tab>
-              <Tab>soups</Tab>
+              <Tab>Soup</Tab>
               <Tab>Dessert</Tab>
               <Tab>Drinks</Tab>
             </TabList>

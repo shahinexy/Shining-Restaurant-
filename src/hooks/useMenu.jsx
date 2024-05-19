@@ -4,7 +4,7 @@ const useMenu = () => {
     const [menuItems, setmenuItems] = useState([]);
     const [loader, setLoader] = useState(true)
     useEffect(() => {
-      fetch("menu.json")
+      fetch("http://localhost:5000/menu")
         .then((res) => res.json())
         .then((data) => {
             setmenuItems(data)
