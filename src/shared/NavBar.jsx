@@ -47,9 +47,12 @@ const NavBar = () => {
           <NavbarItem>
           {
             user ?
+            <>
+            <small className="mr-3">{user?.displayName || 'Unknown'}</small>
             <Button onClick={()=> logOutUser()} color="warning" variant="flat">
                 Logout
               </Button>
+            </>
             :
             <Link to={`/login`}>
             <Button color="warning" variant="flat">

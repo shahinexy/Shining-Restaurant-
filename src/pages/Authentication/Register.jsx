@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const { createUser } = useContext(authContext);
+  const { createUser, updateUserProfile } = useContext(authContext);
+  const navigate = useNavigate()
 
   const {
     register,
@@ -15,7 +16,14 @@ const Register = () => {
   const onSubmit = (data) => {
     console.log(data)
     createUser(data.email, data.pass)
-    .then(res => console.log(res))
+    .then(res => {
+      console.log(res)
+      updateUserProfile(data.name, data.photo)
+      .then(res => {
+        console.log(res, 'user info updated')
+        navigate('/')
+      })
+    })
     .catch(err => console.log(err))
   };
 
@@ -35,6 +43,17 @@ const Register = () => {
             <br />
             {errors.name && (
               <small className="text-red-500">Name is required</small>
+            )}
+            <p className="font-semibold mt-5">Photo URL</p>
+            <input
+              {...register("photo", { required: true })}
+              className="border px-4 py-2"
+              type="text"
+              placeholder="type here"
+            />
+            <br />
+            {errors.photo && (
+              <small className="text-red-500">photo url is required</small>
             )}
             <p className="font-semibold mt-5">Email</p>
             <input
