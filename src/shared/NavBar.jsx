@@ -10,10 +10,14 @@ import {
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
+import useCart from "../hooks/useCart";
 
 const NavBar = () => {
   const {user, logOutUser} = useContext(authContext)
+  const [cart] = useCart()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navItems = <>
         <NavLink to={'/'}> Home</NavLink>
         <NavLink to={'/ourMenu'}>Our Menu</NavLink>
@@ -41,6 +45,7 @@ const NavBar = () => {
             <p className="font-bold text-inherit">ACME</p>
           </NavbarBrand>
           {navItems}
+          
         </NavbarContent>
 
         <NavbarContent justify="end">
@@ -48,6 +53,7 @@ const NavBar = () => {
           {
             user ?
             <>
+            <small className="text-orange-500 bg-gray-200 px-3 py-2 mr-5 cursor-pointer">Cart +{cart.length}</small>
             <small className="mr-3">{user?.displayName || 'Unknown'}</small>
             <Button onClick={()=> logOutUser()} color="warning" variant="flat">
                 Logout
