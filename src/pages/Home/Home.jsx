@@ -6,6 +6,7 @@ import OurMenueSection from "./OurMenueSection";
 import ReviewSection from "./ReviewSection";
 import { Button } from "@nextui-org/react";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div>

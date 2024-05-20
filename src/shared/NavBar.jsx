@@ -7,15 +7,17 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { authContext } from "../AuthProvider/AuthProvider";
 
 const NavBar = () => {
+  const {user, logOutUser} = useContext(authContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = <>
         <NavLink to={'/'}> Home</NavLink>
         <NavLink to={'/ourMenu'}>Our Menu</NavLink>
-        <NavLink to={'/ourShop'}>Our Shop</NavLink>
+        <NavLink to={'/ourShop/salad'}>Our Shop</NavLink>
   </>
   return (
     <div className="fixed top-0 z-20 w-full ">
@@ -42,15 +44,19 @@ const NavBar = () => {
         </NavbarContent>
 
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link to={'/login'}>Login</Link>
-          </NavbarItem>
           <NavbarItem>
-          <Link to={`/`}>
-          <Button color="warning" href="#" variant="flat">
-              Sign Up
-            </Button>
-          </Link>
+          {
+            user ?
+            <Button onClick={()=> logOutUser()} color="warning" variant="flat">
+                Logout
+              </Button>
+            :
+            <Link to={`/login`}>
+            <Button color="warning" variant="flat">
+                Login
+              </Button>
+            </Link>
+          }
           </NavbarItem>
         </NavbarContent>
 
