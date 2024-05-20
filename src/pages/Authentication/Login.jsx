@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
-    const {signInUser} = useContext(authContext)
+    const {signInUser, googleSignIn} = useContext(authContext)
     const [disable, setDisable] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
@@ -37,6 +37,16 @@ const Login = () => {
             setDisable(true)
         }
     }
+
+    const handleSocailLogin = (socailProvaider) => {
+        socailProvaider()
+          .then((res) =>{
+            if(res.user){
+              navigate(location?.state ? location.state : "/")
+            }
+          })
+          .catch();
+      };
     
     return (
         <div className="w-full h-screen flex justify-center items-center">
@@ -54,8 +64,10 @@ const Login = () => {
                     <input onBlur={handleCaptcha} className="border px-4 py-2" name="captcha" type="text" placeholder="type the text above" />
                     {/* <button className="mt-3 rounded-none bg-slate-500 py-2">Validate</button> */}
                     </div>
-                    <button disabled={disable} className="mt-10 w-full rounded-none bg-slate-500 py-2">Login</button>
+                    {/* TODO: have to disabel  */}
+                    <button disabled={false} className="mt-10 w-full rounded-none bg-slate-500 py-2">Login</button>
                 <p className='underline text-orange-500 font-bold mt-2'><Link to={'/register'}>Register</Link></p>
+                <p onClick={()=> handleSocailLogin(googleSignIn)} className='text-purple-600 font-bold mt-2'>Google login</p>
                 </form>
             </div>
         </div>
