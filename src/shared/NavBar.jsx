@@ -53,7 +53,7 @@ const NavBar = () => {
           {
             user ?
             <>
-            <small className="text-orange-500 bg-gray-200 px-3 py-2 mr-5 cursor-pointer">Cart +{cart.length}</small>
+            <Link to={'/dashboard/cart'}><small className="text-orange-500 bg-gray-200 px-3 py-2 mr-5 cursor-pointer">Cart +{cart.length}</small></Link>
             <small className="mr-3">{user?.displayName || 'Unknown'}</small>
             <Button onClick={()=> logOutUser()} color="warning" variant="flat">
                 Logout

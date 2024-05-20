@@ -5,6 +5,8 @@ import OurMenu from "../pages/OurMenu/OurMenu";
 import OurShop from "../pages/OurShop/OurShop";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Dashboard from "../Dashboard/Dashboard";
+import Cart from "../Dashboard/Cart";
 
 
 export const router = createBrowserRouter([
@@ -34,4 +36,14 @@ export const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path:'/dashboard/cart',
+          element: <Cart></Cart>
+        }
+      ]
+    }
   ]);
