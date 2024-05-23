@@ -7,6 +7,7 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Dashboard from "../Dashboard/Dashboard";
 import Cart from "../Dashboard/Cart";
+import AllUser from "../Dashboard/AllUser";
 
 
 export const router = createBrowserRouter([
@@ -43,7 +44,14 @@ export const router = createBrowserRouter([
         {
           path:'/dashboard/cart',
           element: <Cart></Cart>
+        },
+
+        // ========= Admin ======== 
+        {
+          path: '/dashboard/allUser',
+          element: <AllUser></AllUser>
         }
+
       ]
     }
   ]);

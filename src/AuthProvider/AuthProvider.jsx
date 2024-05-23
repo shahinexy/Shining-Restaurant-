@@ -1,11 +1,11 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, GoogleAuthProvider  } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from './../firebase/firebase.config';
-import { GoogleAuthProvider } from "firebase/auth/cordova";
 
 export const authContext = createContext()
 
-const googleProvider = new GoogleAuthProvider();
+// const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)

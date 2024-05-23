@@ -6,15 +6,35 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import useCart from "../hooks/useCart";
+import { useQuery } from "@tanstack/react-query";
 import { FaDeleteLeft } from "react-icons/fa6";
-import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const Cart = () => {
-  const [cart, refetch] = useCart();
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-  const axisoSecure = useAxiosSecure();
+const AllUser = () => {
+  const axiosSecure = useAxiosSecure();
+
+  const { data, refetch } = useQuery({
+    queryKey: ["allUser"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+
+  const handleMakeAdmin = (id) => {
+    axiosSecure.patch(`/users/admin/${id}`).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          title: "Maked Admin!",
+          text: "User has been Promoted.",
+          icon: "success",
+        });
+        refetch();
+      }
+    });
+  };
 
   const handleDelete = (id) => {
     console.log(id);
@@ -28,14 +48,14 @@ const Cart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axisoSecure.delete(`/carts/${id}`).then((res) => {
+        axiosSecure.delete(`/carts/${id}`).then((res) => {
           if (res.data) {
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
-            refetch()
+            refetch();
           }
         });
       }
@@ -44,31 +64,29 @@ const Cart = () => {
 
   return (
     <div className="border shadow-xl shadow-black p-7">
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-bold">Total Orders: {cart.length} </h2>
-        <h2 className="text-2xl font-bold">Total Orders: {totalPrice} </h2>
-        <button className="px-6 py-2 bg-orange-500 text-white text-lg font-semibold">
-          PAY
-        </button>
+      <div className="flex">
+        <h2 className="text-2xl font-bold">Total User: {data?.length}</h2>
       </div>
       <div className="my-7">
         <Table aria-label="Example static collection table">
           <TableHeader>
             <TableColumn></TableColumn>
-            <TableColumn>Item Image</TableColumn>
-            <TableColumn>Item Name</TableColumn>
-            <TableColumn>Price</TableColumn>
+            <TableColumn>Name</TableColumn>
+            <TableColumn>Email</TableColumn>
+            <TableColumn>Roll</TableColumn>
             <TableColumn>Action</TableColumn>
           </TableHeader>
           <TableBody>
-            {cart.map((data, idx) => (
+            {data?.map((data, idx) => (
               <TableRow key={data._id}>
                 <TableCell>{idx}</TableCell>
-                <TableCell>
-                  <img className="w-28" src={data.image} alt="" />
-                </TableCell>
                 <TableCell>{data.name}</TableCell>
-                <TableCell>{data.price}</TableCell>
+                <TableCell>{data.email}</TableCell>
+                <TableCell>
+                  {data?.role ? 'Admin' : <button onClick={()=> handleMakeAdmin(data._id)}>
+                    <FaUser className="text-orange-400 text-3xl"></FaUser>
+                  </button>}
+                </TableCell>
                 <TableCell>
                   <button onClick={() => handleDelete(data._id)}>
                     <FaDeleteLeft className="text-red-400 text-4xl" />
@@ -83,4 +101,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default AllUser;

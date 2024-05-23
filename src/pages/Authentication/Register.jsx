@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxoisPublic from "../../hooks/useAxoisPublic";
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(authContext);
@@ -114,6 +115,7 @@ const Register = () => {
           <p className="underline text-orange-500 font-bold mt-2">
             <Link to={"/login"}>Login</Link>
           </p>
+          <SocialLogin></SocialLogin>
         </form>
       </div>
     </div>
