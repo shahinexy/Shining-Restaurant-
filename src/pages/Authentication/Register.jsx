@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
+import useAxoisPublic from "../../hooks/useAxoisPublic";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(authContext);
+  const axiosPublic = useAxoisPublic()
   const navigate = useNavigate()
 
   const {
@@ -19,9 +21,20 @@ const Register = () => {
     .then(res => {
       console.log(res)
       updateUserProfile(data.name, data.photo)
-      .then(res => {
-        console.log(res, 'user info updated')
-        navigate('/')
+      .then(() => {
+        const userInfo = {
+          name: data.name,
+          email: data.email
+        }
+        axiosPublic.post('/users', userInfo)
+        .then(res => {
+          if(res.data.insertedId){
+            console.log('user added in the database')
+            navigate('/')
+          }
+        })
+        .catch(err => console.log(err))
+
       })
     })
     .catch(err => console.log(err))
