@@ -29,7 +29,7 @@ const Home = () => {
       <div className="flex justify-center">
         <Link to={'/ourShop'}>
           <Button color="warning" variant="bordered" className="uppercase">
-            VIew Full Menu
+            View Full Menu
           </Button>
         </Link>
       </div>
