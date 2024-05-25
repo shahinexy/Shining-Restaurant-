@@ -53,7 +53,7 @@ const AddItems = () => {
             <div className="w-full pb-3">
                 <input  {...register("image")} type="file" />
             </div>
-            <Button className="rounded-none bg-orange-500">Add Item <FaUtensils/></Button>
+            <button className="rounded-none bg-orange-500 flex gap-2 items-center px-4 py-2">Add Item <FaUtensils/></button>
         </form>
       </div>
     </div>
