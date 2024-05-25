@@ -2,10 +2,13 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../components/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
 import useAxoisPublic from "../hooks/useAxoisPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 
 const AddItems = () => {
-  const axiosPublic = useAxoisPublic()
+  const axiosPublic = useAxoisPublic();
+  const axiosSecure = useAxiosSecure()
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
@@ -16,6 +19,14 @@ const AddItems = () => {
         'content-type' : 'multipart/form-data' 
       }
     })
+    if(res.data.success){
+      const itemDatas = {...data, image: res.data.data.display_url, price: parseFloat(data.price)}
+      const menuRes = await axiosSecure.post('/menu', itemDatas)
+      console.log(menuRes.data);
+      if(menuRes.data.insertedId){
+        toast.success('Added success')
+      }
+    }
     console.log(res.data);
   };
 
