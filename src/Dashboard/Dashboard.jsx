@@ -12,10 +12,11 @@ import {
   FaStreetView,
 } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   // TODO: get admin value from databae
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex justify-between items-center">
