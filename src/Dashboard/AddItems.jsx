@@ -1,12 +1,23 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../components/SectionTitle";
-import { Button } from "@nextui-org/react";
 import { FaUtensils } from "react-icons/fa";
+import useAxoisPublic from "../hooks/useAxoisPublic";
+
 
 const AddItems = () => {
+  const axiosPublic = useAxoisPublic()
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data)
+    const imageFile = {image: data.image[0]}
+    const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGEBB_API}`,imageFile, {
+      headers: {
+        'content-type' : 'multipart/form-data' 
+      }
+    })
+    console.log(res.data);
+  };
 
   return (
     <div className="border shadow-xl shadow-black p-7">
