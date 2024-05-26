@@ -25,7 +25,7 @@ const UpdateItem = () => {
         const itemDatas = {...data, image: res.data.data.display_url, price: parseFloat(data.price)}
         const menuRes = await axiosSecure.patch(`/menu/${_id}`, itemDatas)
         console.log(menuRes.data);
-        if(menuRes.data.insertedId){
+        if(menuRes.data.modifiedCount > 0){
           toast.success('updated success')
         }
       }
