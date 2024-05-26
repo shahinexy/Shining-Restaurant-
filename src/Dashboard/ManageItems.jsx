@@ -11,9 +11,11 @@ import Swal from "sweetalert2";
 import SectionTitle from "../components/SectionTitle";
 import useMenu from "../hooks/useMenu";
 import { FaEdit } from "react-icons/fa";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ManageItems = () => {
-    const {menuItems} = useMenu()
+    const {menuItems, refetch} = useMenu()
+    const axisoSecure = useAxiosSecure()
 
     const handleDelete = (id) => {
         console.log(id);
@@ -26,9 +28,11 @@ const ManageItems = () => {
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
+            console.log(result);
           if (result.isConfirmed) {
-            axisoSecure.delete(`/carts/${id}`).then((res) => {
-              if (res.data) {
+            axisoSecure.delete(`/menu/${id}`).then((res) => {
+                console.log(res.data);
+              if (res.data.deletedCount > 0) {
                 Swal.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",
