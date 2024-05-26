@@ -10,6 +10,7 @@ import useCart from "../hooks/useCart";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -47,9 +48,17 @@ const Cart = () => {
       <div className="flex justify-between">
         <h2 className="text-2xl font-bold">Total Orders: {cart.length} </h2>
         <h2 className="text-2xl font-bold">Total Orders: {totalPrice} </h2>
-        <button className="px-6 py-2 bg-orange-500 text-white text-lg font-semibold">
+        {
+          cart.length ? <Link to={'/dashboard/payment'}>
+          <button className="px-6 py-2 bg-orange-500 text-white text-lg font-semibold">
+            PAY
+          </button>
+          </Link>
+          : 
+          <button disabled className="px-6 py-2 bg-orange-500 text-white text-lg font-semibold">
           PAY
         </button>
+        }
       </div>
       <div className="my-7">
         <Table aria-label="Example static collection table">

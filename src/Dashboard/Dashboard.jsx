@@ -19,8 +19,8 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex justify-between items-center">
-      <div className="w-2/12 bg-orange-500 h-screen flex justify-center items-center">
+    <div className=" flex justify-between items-center">
+      <div className="w-2/12 fixed bottom-0 bg-orange-500 h-screen flex justify-center items-center">
         <ul className="text-lg font-semibold ">
           {isAdmin ? (
             <>
@@ -167,7 +167,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="w-10/12">
+      <div className="w-10/12 ml-auto">
         <div className=" max-w-5xl mx-auto bg-slate-100">
           <Outlet></Outlet>
         </div>
