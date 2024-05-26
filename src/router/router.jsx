@@ -12,6 +12,7 @@ import PrivetRout from './../PrivetRout/PrivetRout';
 import AddItems from "../Dashboard/AddItems";
 import AdminRoute from './AdminRoute';
 import ManageItems from "../Dashboard/ManageItems";
+import UpdateItem from "../Dashboard/UpdateItem";
 
 
 export const router = createBrowserRouter([
@@ -53,16 +54,21 @@ export const router = createBrowserRouter([
 
         // ========= Admin rout ======== 
         {
-          path: '/dashboard/allUser',
+          path: 'allUser',
           element: <AdminRoute><AllUser></AllUser></AdminRoute>
         },
         {
-          path: '/dashboard/addItems',
+          path: 'addItems',
           element: <AdminRoute><AddItems></AddItems></AdminRoute>
         },
         {
-          path: '/dashboard/manageItems',
+          path: 'manageItems',
           element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+        },
+        {
+          path: 'updateItem/:id',
+          element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
         }
 
       ]

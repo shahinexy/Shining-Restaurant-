@@ -12,6 +12,7 @@ import SectionTitle from "../components/SectionTitle";
 import useMenu from "../hooks/useMenu";
 import { FaEdit } from "react-icons/fa";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
     const {menuItems, refetch} = useMenu()
@@ -70,9 +71,11 @@ const ManageItems = () => {
                   <TableCell>{data.name}</TableCell>
                   <TableCell>{data.price}</TableCell>
                   <TableCell>
+                    <Link to={`/dashboard/updateItem/${data._id}`}>
                     <button >
                       <FaEdit className="text-orange-500 text-4xl" />
                     </button>
+                    </Link>
                   </TableCell>
                   <TableCell>
                     <button onClick={() => handleDelete(data._id)}>
