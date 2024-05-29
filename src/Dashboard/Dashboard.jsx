@@ -97,7 +97,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink
-                  to={"/dashboard/payment"}
+                  to={"/dashboard/paymentHistory"}
                   className="flex gap-2 items-center hover:bg-orange-400 px-10 py-2 uppercase"
                 >
                   <FaMoneyBill />
