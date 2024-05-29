@@ -70,7 +70,7 @@ const Cart = () => {
             <TableColumn>Action</TableColumn>
           </TableHeader>
           <TableBody>
-            {cart.map((data, idx) => (
+            {cart?.map((data, idx) => (
               <TableRow key={data._id}>
                 <TableCell>{idx}</TableCell>
                 <TableCell>

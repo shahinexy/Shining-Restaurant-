@@ -62,7 +62,7 @@ const ManageItems = () => {
               <TableColumn>Action</TableColumn>
             </TableHeader>
             <TableBody>
-              {menuItems.map((data, idx) => (
+              {menuItems?.map((data, idx) => (
                 <TableRow key={data._id}>
                   <TableCell>{idx}</TableCell>
                   <TableCell>
