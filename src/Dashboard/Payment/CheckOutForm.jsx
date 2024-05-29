@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 import { authContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const CheckOutForm = () => {
   const [clientSecret, setClientSecret] = useState()
@@ -11,19 +12,20 @@ const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure()
-  const [cart] = useCart()
+  const [cart, refetch] = useCart()
   const {user} = useContext(authContext)
 
   const totalPrice = cart.reduce((total, item) => total + item.price ,0)
-  console.log(totalPrice);
 
   // payment intent
   useEffect(()=>{
-    axiosSecure.post('/create-payment-intent', {price: totalPrice})
-    .then(res => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret)
-    })
+      if(totalPrice > 0){
+        axiosSecure.post('/create-payment-intent', {price: totalPrice})
+        .then(res => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret)
+        })
+      }
   },[axiosSecure, totalPrice])
 
   const handleSubmit = async (e) => {
@@ -76,8 +78,18 @@ const CheckOutForm = () => {
         const payment = {
           email: user.email,
           price: totalPrice,
+          transectionId: paymentIntent.id,
           date: new Date(),
-          cardId: cart.map(item => item.)
+          cardIds: cart.map(item => item._id),
+          menuCartIds: cart.map(item => item.menuID),
+          status: 'pending'
+        }
+
+        const res = await axiosSecure.post('/paymens', payment);
+        console.log(res.data);
+        refetch()
+        if(res.data.paymentResult.insertedId){
+          toast.success('payment successfull')
         }
       }
     }
